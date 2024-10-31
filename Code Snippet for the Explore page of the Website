@@ -1,0 +1,63 @@
+...................................................................................................................
+</header>
+        <h2>
+            <img src="images/finallogo.png" alt="Mirpo Logo" class="logo" width="40" height="40"> 
+            Explore
+        </h2>
+<!-- Search Form -->
+<form method="POST" action="">
+    <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Type to search..." class="form-control" style="width: auto; display: inline-block;"/>
+    <input type="submit" value="Search" class="btn btn-primary"/>
+</form>
+
+<?php
+if ($result && $result->num_rows > 0) {
+    echo "<table class='table table-bordered'>";
+    echo "<tr>
+            <th>miRNA</th>
+            <th>Target Gene</th>
+            <th>Action/target description</th>
+            <th>General mechanism</th>
+            <th>Regulatory Impact of miRNAs on Target Genes</th>
+            <th>Citation</th>
+          </tr>";
+    
+    while($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td><a href='pre-mirna.php?mirna=" . urlencode($row['miRNA']) . "'>" . htmlspecialchars($row['miRNA']) . "</a></td>";
+        echo "<td><a href='pathway.php?Target_gene=" . urlencode($row['Target Gene']) . "'>" . htmlspecialchars($row['Target Gene']) . "</a></td>";
+        echo "<td>" . htmlspecialchars($row['Action/target description']) . "</td>";
+      
+        $image_file = 'images/' . basename(htmlspecialchars($row['General mechanism']));
+        if (file_exists($image_file)) {
+            $modal_id = uniqid('modal_');
+            echo "<td><a href='#' data-toggle='modal' data-target='#$modal_id'>View Image</a></td>";
+            echo "<div class='modal fade' id='$modal_id' tabindex='-1' role='dialog' aria-labelledby='modalLabel' aria-hidden='true'>
+                    <div class='modal-dialog' role='document'>
+                        <div class='modal-content'>
+                            <div class='modal-header'>
+                                <h5 class='modal-title' id='modalLabel'>General Mechanism Image</h5>
+                                <button type='button' class='close' data-dismiss='modal' aria-label='Close'>
+                                    <span aria-hidden='true'>&times;</span>
+                                </button>
+                            </div>
+                            <div class='modal-body'>
+                                <img src='$image_file' class='modal-img' alt='General Mechanism Image'>
+                            </div>
+                            <div class='modal-footer'>
+                                <a href='$image_file' download class='btn btn-success'>Download</a>
+                                <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>";
+        } else {
+            echo "<td>No Image Available</td>";
+        }
+
+        echo "<td>" . htmlspecialchars($row['Regulatory Impact of miRNAs on Target Genes']) . "</td>";
+        echo "<td>" . htmlspecialchars($row['Citation']) . "</td>";
+        echo "</tr>";
+    }
+    
+    echo "</table>";..............................................................................................
