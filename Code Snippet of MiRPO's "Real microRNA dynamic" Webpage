@@ -1,0 +1,140 @@
+...............................................................................................
+     
+ // Get references to the dropdowns and input fields
+ const dropdownLeft = document.getElementById('dropdown-left');
+    const searchLeft = document.getElementById('search-left');
+    const dropdownRight = document.getElementById('dropdown-right');
+    const searchRight = document.getElementById('search-right');
+
+ // Set initial placeholder
+ searchLeft.placeholder = 'Eg: stu-miR398b-3p/UUGUGUUCUCAGGUCACCCCU...'; // Initial placeholder
+        searchRight.placeholder = 'Eg: Cu/Zn SOD gene/AAGGGUGACCUGAGAUCACAU...'; // Initial placeholder
+
+
+        
+        searchLeft.addEventListener('focus', () => {
+            dropdownLeft.classList.add('show');
+        });
+
+        searchLeft.addEventListener('blur', () => {
+            dropdownLeft.classList.remove('show');
+        });
+
+        searchRight.addEventListener('focus', () => {
+            dropdownRight.classList.add('show');
+        });
+
+        searchRight.addEventListener('blur', () => {
+            dropdownRight.classList.remove('show');
+        });
+
+
+        function randomPosition(element) {
+            const x = Math.random() * (window.innerWidth - element.clientWidth);
+            const y = Math.random() * (window.innerHeight - element.clientHeight);
+            element.style.left = x + 'px';
+            element.style.top = y + 'px';
+        }
+
+        function startMovement() {
+            movementInterval = setInterval(() => {
+                if (!isBound) {
+                    randomPosition(microrna);
+                    randomPosition(mrna);
+                }
+            }, 2000);
+        }
+
+        function stopMovement() {
+            clearInterval(movementInterval);
+        }
+
+        function createDegradedPieces() {
+            for (let i = 0; i < 5; i++) {
+                const degradedPiece = document.createElement('img');
+                degradedPiece.src = 'images/pixlrmicrorna.png'; 
+                degradedPiece.classList.add('degraded');
+                degradedPiece.style.left = microrna.style.left;
+                degradedPiece.style.top = microrna.style.top;
+                container.appendChild(degradedPiece);
+
+                degradedPiece.style.left = (parseFloat(microrna.style.left) + (Math.random() * 50 - 25)) + 'px';
+                degradedPiece.style.top = (parseFloat(microrna.style.top) + (Math.random() * 50 - 25)) + 'px';
+                degradedPiece.classList.add('show');
+            }
+        }
+
+        function createGoldenProteins() {
+            for (let i = 0; i < 10; i++) {
+                const protein = document.createElement('div');
+                protein.classList.add('golden-protein');
+                protein.style.left = mrna.style.left;
+                protein.style.top = mrna.style.top;
+                container.appendChild(protein);
+
+                protein.style.left = (parseFloat(mrna.style.left) + (Math.random() * 50 - 25)) + 'px';
+                protein.style.top = (parseFloat(mrna.style.top) + (Math.random() * 50 - 25)) + 'px';
+                protein.style.opacity = 1; 
+            }
+        }
+
+        function bindMiRNA() {
+            stopMovement();
+            microrna.style.transition = '2s';
+            mrna.style.transition = '2s';
+            microrna.style.left = mrna.style.left;
+            microrna.style.top = mrna.style.top;
+            isBound = true;  
+            
+            setTimeout(() => {
+                mrna.classList.add('split');
+                createDegradedPieces(); 
+                isDegraded = true; 
+            }, 2000);
+        }
+
+        function handleOff() {
+            if (!isDegraded) {
+                stopMovement();
+                microrna.style.transition = 'none'; 
+                isBound = true; 
+
+                mrna.classList.add('split');
+                createDegradedPieces();
+                createGoldenProteins();
+                isDegraded = true; 
+            }
+        }
+
+        function resetPositions() {
+            isBound = false;  
+            microrna.style.transition = 'none';
+            mrna.style.transition = 'none';
+            mrna.classList.remove('split');  
+            
+            // Clear degraded pieces and golden proteins
+            const degradedPieces = document.querySelectorAll('.degraded');
+            degradedPieces.forEach(piece => piece.remove());
+
+            const goldenProteins = document.querySelectorAll('.golden-protein');
+            goldenProteins.forEach(protein => protein.remove());
+
+            // Reset positions of microrna and mrna
+            microrna.style.left = '0px';
+            microrna.style.top = '0px';
+            mrna.style.left = '0px';
+            mrna.style.top = '0px';
+
+            startMovement();
+            isDegraded = false;
+        }
+
+        onButton.addEventListener('click', bindMiRNA);
+        offButton.addEventListener('click', handleOff);
+        clearButton.addEventListener('click', resetPositions);
+
+        startMovement();
+    </script>
+</body>
+</html>
+
