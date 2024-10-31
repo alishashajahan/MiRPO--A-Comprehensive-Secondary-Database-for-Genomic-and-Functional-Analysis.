@@ -1,0 +1,33 @@
+.....................................................................
+
+$stmtMicroRNA = $conn->prepare($sqlMicroRNA);
+$stmtMicroRNA->bind_param("s", $microRNA);
+$stmtMicroRNA->execute();
+$stmtMicroRNA->bind_result($microRNASequence);
+$stmtMicroRNA->fetch();
+$stmtMicroRNA->close();
+
+$stmtMessengerRNA = $conn->prepare($sqlMessengerRNA);
+$stmtMessengerRNA->bind_param("s", $messengerRNA);
+$stmtMessengerRNA->execute();
+$stmtMessengerRNA->bind_result($messengerRNASequence);
+$stmtMessengerRNA->fetch();
+$stmtMessengerRNA->close();
+
+// Return the results as JSON
+$response = [];
+if ($microRNASequence && $messengerRNASequence) {
+    $response['success'] = true;
+    $response['microRNASequence'] = $microRNASequence;
+    $response['messengerRNASequence'] = $messengerRNASequence;
+} else {
+    $response['success'] = false; // No sequences found
+}
+
+header('Content-Type: application/json');
+echo json_encode($response);
+
+$conn->close();
+?>
+
+..................................................................
