@@ -1,0 +1,78 @@
+.............................................................................................
+
+    <div class="container">
+        <!-- Back to Dashboard Button -->
+        <div class="back-button">
+            <a href="dashboard.php">Back to Dashboard</a>
+        </div>
+
+        <h2 style="text-align: center; color: #333;">Submit miRNA Data</h2>
+        <form id="dataSubmissionForm" action="submit.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="mirna_name">miRNA Name:</label>
+                <input type="text" id="mirna_name" name="mirna_name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="target_gene">Target Gene:</label>
+                <input type="text" id="target_gene" name="target_gene" required>
+            </div>
+        
+            <div class="form-group">
+                <label>Regulatory Impact of Target Gene on miRNA:</label>
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" id="upregulation" name="regulatory_impact" value="upregulation" required>
+                        Upregulation
+                    </label>
+                    <label>
+                        <input type="radio" id="downregulation" name="regulatory_impact" value="downregulation" required>
+                        Downregulation
+                    </label>
+                </div>
+            </div>
+        
+            <div class="form-group">
+                <label for="specific_pathway">Specific Pathway Name:</label>
+                <input type="text" id="specific_pathway" name="specific_pathway" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="precursor_mirna">Precursor miRNA:</label>
+                <input type="text" id="precursor_mirna" name="precursor_mirna" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="evolutionary_relationship">Evolutionary Relationship:</label>
+                <input type="text" id="evolutionary_relationship" name="evolutionary_relationship" required>
+            </div>
+        
+            <div class="form-group">
+                <label for="general_mechanism">General Mechanism:</label>
+                <input type="text" id="general_mechanism" name="general_mechanism">
+                <label class="upload" for="general_mechanism_photo">Upload Photo:</label>
+                <input type="file" id="general_mechanism_photo" name="general_mechanism_photo" accept="image/*">
+            </div>
+        
+            <div class="form-group">
+                <label for="specific_pathway_mechanism">Specific Pathway Mechanism:</label>
+                <input type="text" id="specific_pathway_mechanism" name="specific_pathway_mechanism">
+                <label class="upload" for="specific_pathway_photo">Upload Photo:</label>
+                <input type="file" id="specific_pathway_photo" name="specific_pathway_photo" accept="image/*">
+            </div>
+        
+            <div class="form-group">
+                <label for="citation">Citation:</label>
+                <input type="text" id="citation" name="citation" required>
+            </div>
+        
+            <input type="submit" value="Submit Data">
+        </form>
+    </div>
+
+    <script>
+        // Add any necessary JavaScript validation if needed
+    </script>
+
+</body>
+</html>
