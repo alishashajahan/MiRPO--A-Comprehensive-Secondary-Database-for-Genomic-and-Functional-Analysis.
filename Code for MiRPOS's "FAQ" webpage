@@ -1,0 +1,74 @@
+.............................................................
+
+
+
+<!-- Header Section -->
+<header class="bg-dark p-3">
+  <div class="container-fluid"> <!-- Use container-fluid to remove padding -->
+    <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-start">
+      <a class="navbar-brand" href="#">
+        <img src="images/finallogo.png" alt="Mirpo Logo" width="30" height="30" class="d-inline-block align-top">
+      </a>
+      <span class="text-left" style="color: red;">MirPO - A Comprehensive Database of Potato microRNAs for Genomic and Functional Analysis</span>
+    </nav>
+  </div>
+</header>
+
+
+<body>
+    <!-- Background Image -->
+    <div class="background-image"></div>
+
+    <!-- Navigation bar (you can include your existing navigation bar here) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <!-- Your navbar content -->
+    </nav>
+
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <div class="container">
+            <h2 class="text-center mb-4">Frequently Asked Questions (FAQ)</h2>
+            <a href="index.php" class="back-link">Back to Home</a> <!-- Back to Home link -->
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <!-- FAQ Items -->
+                    <div class="faq-item">
+                        <p class="faq-question">What is the MirPO database?</p>
+                        <p class="faq-answer">The MirPO database is a comprehensive resource for information on potato miRNAs, including their sequences, functions, target genes, general mechanisms, evolutionary perspectives, pre-miRNA information, secondary structure information, and associated pathways. It is designed to help researchers as well as beginners to explore and analyze miRNA data related to potatoes.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">How do I search for specific miRNAs in the database?</p>
+                        <p class="faq-answer">You can use the search functionality available on the Explore page. Simply enter the miRNA name, target gene name, or related keywords into the search bar to find relevant information. The main search bar will be updated soon, and if you have further queries on how to search, you can refer to the tutorial video on the "HELP" page.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">Can I download data from the MirPO database?</p>
+                        <p class="faq-answer">Downloading options will be updated soon for various formats. However, you can still download images of secondary structures.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">How frequently is the database updated?</p>
+                        <p class="faq-answer">The database is updated regularly to include new research findings and data.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">Who can I contact if I encounter issues or have questions about the database?</p>
+                        <p class="faq-answer">For any issues or questions, you can contact our support team via email at <a href="mailto:support@example.com">support@example.com</a> or use the contact form provided on the website. We will get back to you within a limited period of time.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">How can I find the mechanism of a specific miRNA and its target gene if I only know the miRNA and target gene names?</p>
+                        <p class="faq-answer">To explore the mechanism of a particular miRNA and its target gene, visit the "Explore" page. You can access this page directly by clicking on the "Explore" option in the navigation bar of the homepage.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">Where can I find the secondary structure of an miRNA if I only have the miRNA name?</p>
+                        <p class="faq-answer">To find the secondary structure of a specific miRNA, refer to the "Secondary Structure" option in the dropdown menu under "Categories" located in the navigation bar of the homepage.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">How can I determine if a particular action involving an miRNA in potatoes also occurs in other crops?</p>
+                        <p class="faq-answer">To investigate whether a similar action involving a specific miRNA occurs in other crops, use the "Evolution" option available in the dropdown menu under "Categories" in the navigation bar of the homepage.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">How do I find the precursor miRNA of a given miRNA?</p>
+                        <p class="faq-answer">You can find the precursor miRNA of a given miRNA by selecting the "Pre-miRNA" option in the dropdown menu under "Categories" in the navigation bar of the homepage.</p>
+                    </div>
+                    <div class="faq-item">
+                        <p class="faq-question">What is the purpose of the 'Help' section on the website?</p>
+                        <p class="faq-answer">The 'Help' section is designed to assist users in navigating the website and utilizing its features effectively. It includes tutorial videos and other troubleshooting tips. Updates will be provided in the "IMPORTANT UPDATE" section in the marquee text option on the homepage.</p>
+                    </div>..........................................
