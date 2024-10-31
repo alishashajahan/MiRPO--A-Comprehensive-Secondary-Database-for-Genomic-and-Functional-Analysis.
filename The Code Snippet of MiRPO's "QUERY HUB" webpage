@@ -1,0 +1,72 @@
+.......................................................
+
+        // Display Questions
+        while ($row = $queries->fetch_assoc()): ?>
+            <div class="card my-4">
+                <div class="card-body">
+                    <h5><?php echo htmlspecialchars($row['name']); ?> asked:</h5>
+                    <p><?php echo nl2br(htmlspecialchars($row['question'])); ?></p>
+
+                    <!-- Display any uploaded files for the query -->
+                    <?php if (!empty($row['file_path'])): ?>
+                        <div>
+                            <a href="uploads/<?php echo htmlspecialchars($row['file_path']); ?>" target="_blank">View Uploaded File</a>
+                        </div>
+                    <?php endif; ?>
+
+                    <p class="text-muted" style="font-size: 0.9rem;">
+                        Asked on: <?php echo date('F j, Y, g:i a', strtotime($row['created_at'])); ?>
+                    </p>
+
+                    <!-- Fetch and display answers -->
+                    <?php
+                    $query_id = $row['id'];
+                    $sql_answers = "SELECT * FROM answers WHERE query_id = $query_id";
+                    $answers = $conn->query($sql_answers);
+                    ?>
+                    <?php while ($ans = $answers->fetch_assoc()): ?>
+                        <div class="ml-4">
+                            <strong><?php echo htmlspecialchars($ans['name']); ?> replied:</strong>
+                            <p><?php echo nl2br(htmlspecialchars($ans['answer'])); ?></p>
+
+                            <!-- Display any uploaded files for the answer -->
+                            <?php if (!empty($ans['file_path'])): ?>
+                                <div>
+                                    <a href="uploads/<?php echo htmlspecialchars($ans['file_path']); ?>" target="_blank">View Uploaded File</a>
+                                </div>
+                            <?php endif; ?>
+
+                            <p class="text-muted" style="font-size: 0.9rem;">
+                                Replied on: <?php echo date('F j, Y, g:i a', strtotime($ans['created_at'])); ?>
+                            </p>
+                        </div>
+                    <?php endwhile; ?>
+
+                    <!-- Reply Form -->
+                    <form action="reply.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="query_id" value="<?php echo $row['id']; ?>">
+                        
+                        <div class="form-group">
+                            <label>Reply to this question:</label>
+                            <textarea name="answer" class="form-control" rows="3" required></textarea>
+                        </div>
+
+                        <!-- File Upload for Answer -->
+                        <div class="form-group">
+                            <label>Upload File (optional):</label>
+                            <input type="file" name="uploaded_file" class="form-control-file">
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="showNameInput(this)">Submit Reply</button>
+                        
+                        <!-- Name Input Field (Initially Hidden) -->
+                        <div class="form-group name-input" style="display: none;">
+                            <label>Your Name:</label>
+                            <input type="text" name="name" class="form-control" placeholder="Enter your name" required>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-success">Confirm Reply</button>
+                    </form>
+                </div>
+            </div>
+.....................................................................................
