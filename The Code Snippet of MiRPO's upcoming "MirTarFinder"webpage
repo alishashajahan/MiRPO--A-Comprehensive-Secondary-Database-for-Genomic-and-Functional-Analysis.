@@ -1,0 +1,58 @@
+..........................................................
+ <!-- Navigation buttons (right side) -->
+    <div class="navbar-buttons">
+      <a href="tutorial.php">Tutorial Resource</a>
+      <a href="download.php">Download</a>
+      <a href="index.php">Back to Homepage</a>
+    </div>
+  </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marquee Text</title>
+  <style>
+    /* Marquee container styling */
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      background-color: #222; /* Dark background */
+      padding: 15px 0;
+    }
+
+    /* Marquee text styling */
+    .marquee-text {
+      display: inline-block;
+      color: #ffeb3b; /* Bright yellow text */
+      font-size: 24px;
+      font-weight: bold;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Soft shadow for depth */
+      animation: marquee 10s linear infinite; /* Marquee animation */
+      white-space: nowrap;
+    }
+
+    /* Animation keyframes for marquee */
+    @keyframes marquee {
+      0% {
+        transform: translateX(100%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Marquee container -->
+  <div class="marquee-container">
+    <div class="marquee-text">Stay tuned! MirTarFinder is on its way...</div>
+  </div>
+
+</body>
+</html>
