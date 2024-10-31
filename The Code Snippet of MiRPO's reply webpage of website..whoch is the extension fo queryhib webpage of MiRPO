@@ -1,0 +1,33 @@
+................................................................................
+// Handle file upload
+$file_path = null;
+if (isset($_FILES['uploaded_file']) && $_FILES['uploaded_file']['error'] == 0) {
+    $upload_dir = 'uploads/';
+    $file_name = basename($_FILES['uploaded_file']['name']);
+    $file_path = $upload_dir . $file_name;
+
+    // Check if file type is allowed
+    $allowed_types = [
+        'image/jpeg', 
+        'image/png', 
+        'image/pjpeg', 
+        'video/mp4', 
+        'application/msword', 
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 
+        'text/html' // Allow .html files
+    ];
+
+    // Validate the file type
+    if (in_array($_FILES['uploaded_file']['type'], $allowed_types)) {
+        move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $file_path);
+    } else {
+        die("Unsupported file type.");
+    }
+}
+
+// Insert answer into database
+$sql = "INSERT INTO answers (query_id, name, answer, file_path, created_at) VALUES (?, ?, ?, ?, NOW())";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("isss", $query_id, $name, $answer, $file_path);
+$stmt->execute();
+..................................................................................................................
