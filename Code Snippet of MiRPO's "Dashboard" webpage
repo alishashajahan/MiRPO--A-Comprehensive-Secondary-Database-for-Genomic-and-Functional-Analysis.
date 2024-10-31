@@ -1,0 +1,46 @@
+..........................................................
+
+<!-- Dashboard Content -->
+<div class="container mt-5">
+    <h1 class="text-center">Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
+    <p class="text-center">Welcome to the MiRPO dashboard.</p>
+
+    <!-- Search Bar -->
+    <div class="d-flex justify-content-center">
+        <form class="form-inline" action="" method="GET">
+            <div class="input-group mb-3">
+                <select class="custom-select" name="searchType" id="searchType" onchange="updatePlaceholder()">
+                    <option value="miRNA" <?php if ($searchType == "miRNA") echo 'selected'; ?>>miRNA</option>
+                    <option value="Target Gene" <?php if ($searchType == "Target Gene") echo 'selected'; ?>>Target Gene</option>
+                    <option value="Specific Pathway" <?php if ($searchType == "Specific Pathway") echo 'selected'; ?>>Specific Pathway</option>
+                    <option value="Trait-Based Search" <?php if ($searchType == "Trait-Based Search") echo 'selected'; ?>>Trait-Based Search</option>
+                </select>
+                <input type="text" class="form-control" id="searchInput" name="query" placeholder="<?php echo $placeholder; ?>" value="<?php echo htmlspecialchars($searchQuery); ?>" required>
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    <button class="btn btn-secondary" type="button" onclick="clearSearch()">Clear</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Display search results -->
+    <?php if (!empty($results)): ?>
+        <h2 class="text-center mt-4">Search Results for "<?php echo htmlspecialchars($searchQuery); ?>" in "<?php echo htmlspecialchars($searchType); ?>"</h2>
+        <table class="table table-bordered mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>miRNA</th>
+                    <th>Target Gene</th>
+                    <th>Action/Target Description</th>
+                    <th>General Mechanism</th>
+                    <th>Specific Pathway</th>
+                    <th>Pathway (Pictorial)</th>
+                    <th>Citation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($results as $row): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($row['miRNA']); ?></td>
+...........................................................
