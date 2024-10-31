@@ -1,0 +1,37 @@
+..................................................................
+<header class="bg-dark p-3">
+  <div class="container-fluid"> <!-- Use container-fluid to remove padding -->
+    <nav class="navbar navbar-expand-lg navbar-dark d-flex justify-content-start">
+      <a class="navbar-brand" href="#">
+        <img src="images/finallogo.png" alt="Mirpo Logo" width="30" height="30" class="d-inline-block align-top">
+      </a>
+      <span class="text-left" style="color: red;">MiRPO - A COMPREHENSIVE DATABASE OF POTATO MICRORNAs FOR GENOMIC AND FUNCTIONAL ANALYSIS</span>
+      <div class="ml-auto">
+                    <a href="index.php" class="btn btn-primary">Back to Homepage</a>
+    </nav>
+  </div>
+</header>
+
+
+
+
+<h1>Evolution</h1>
+
+<!-- Search Form -->
+<form method="POST" action="">
+    <input type="text" name="search" value="<?php echo htmlspecialchars($search); ?>" placeholder="Type to search...">
+    <input type="submit" value="Search">
+</form>
+
+<?php
+if ($result->num_rows > 0) {
+    // Output data for each miRNA
+    echo "<table border='1'>";
+    echo "<tr>
+            <th>miRNA</th>
+            <th>Action/target description</th>
+            <th>Evolution</th>
+            <th>Citation</th>
+          </tr>";
+
+.........................................................................................
